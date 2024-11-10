@@ -20,7 +20,7 @@ services:
       - ./wait-for-it.sh:/wait-for-it.sh  # Monta o script `wait-for-it.sh` no container da API
     command: ["./wait-for-it.sh", "database:5432", "--", "java", "-jar", "ac2_ca.jar"]  # Altere o nome do arquivo JAR conforme necessário
     ports:
-      - "8484:8080"  # Expondo a porta da API (8080 no container para a porta 8484 na máquina host)
+      - "8585:8080"  # Expondo a porta da API (8080 no container para a porta 8484 na máquina host)
 
 volumes:
   db-volume:
