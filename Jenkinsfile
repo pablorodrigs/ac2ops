@@ -21,7 +21,7 @@ pipeline {
 
     stage('Run tests against the container') {
       steps {
-        bat 'curl http://localhost:8585 || echo "Service not responding"'
+        bat 'docker exec <nome_do_container> curl http://localhost:8585 || echo "Service not responding"'
       }
     }
 
