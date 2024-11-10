@@ -18,7 +18,7 @@ pipeline {
     stage('Start container') {
       steps {
         bat 'docker-compose -f docker-compose.prod.yml up -d --no-color'
-        bat 'docker-compose ps'
+         bat 'docker-compose -f docker-compose.prod.yml ps'
       }
     }
 
