@@ -1,17 +1,13 @@
-# Usar uma imagem do JDK 17
-FROM eclipse-temurin:17-jdk
+FROM openjdk:17
 
-# Definir o diretório de trabalho dentro do container
+# Set the working directory in the container
 WORKDIR /ac2_ca
 
-# Copiar o arquivo .jar gerado para o diretório do container
-COPY target/ac2_ca-0.0.1-SNAPSHOT.jar /ac2_ca/ac2_ca-0.0.1-SNAPSHOT.jar
+# Copy the JAR file into the container at /educacaoGamificada
+COPY target/*.jar /ac2_ca/ac2_ca-0.0.1-SNAPSHOT.war
 
-# Verificar se o arquivo foi copiado corretamente (opcional, para debug)
-RUN ls -l /ac2_ca
-
-# Expõe a porta 8585
+# Expose the port that your application will run on
 EXPOSE 8585
 
-# Comando para executar a aplicação com Java 17
-CMD ["java", "-XX:+UseContainerSupport", "-Xmx512m", "-Dserver.port=8585", "-jar", "/ac2_ca/ac2_ca-0.0.1-SNAPSHOT.jar"]
+# Specify the command to run on container start
+CMD ["java", "-jar", "ac2_ca-0.0.1-SNAPSHOT.war"]
