@@ -21,7 +21,7 @@ pipeline {
 
     stage('Run tests against the container') {
       steps {
-        bat curl http://localhost:8585 || echo "Service not responding"'
+        bat 'curl http://localhost:8585 || echo "Service not responding"'
       }
     }
 
@@ -39,4 +39,4 @@ pipeline {
       bat 'docker-compose -f docker-compose.prod.yml down'
     }
   }
-}
+}}
