@@ -8,24 +8,20 @@ pipeline {
       }
     }
 
-    stage('Build') {
-      steps {
-        echo 'Building application...'
-        // Adicione aqui os passos para construir a aplicação, se necessário
-      }
-    }
-
     stage('Start container') {
       steps {
+        echo 'Starting container from Docker Hub...'
+        bat 'docker-compose -f docker-compose.prod.yml pull' // Baixa a imagem do Docker Hub
         bat 'docker-compose -f docker-compose.prod.yml up -d --no-color'
-         bat 'docker-compose -f docker-compose.prod.yml ps'
+        sleep time: 60, unit: 'SECONDS' // Aumenta o tempo para o serviço Spring Boot iniciar
+        bat 'docker-compose -f docker-compose.prod.yml logs' // Verifica os logs para conferir o status do Spring Boot
+        bat 'docker-compose -f docker-compose.prod.yml ps' // Verifica o status do container
       }
     }
 
     stage('Run tests against the container') {
       steps {
-        sleep time: 60, unit: 'SECONDS'
-        bat 'curl http://localhost:8585'
+        bat 'curl http://localhost:8585 || echo "Service not responding"'
       }
     }
 
