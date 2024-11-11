@@ -24,19 +24,12 @@ pipeline {
         bat 'curl http://localhost:8585 || echo "Service not responding"'
       }
     }
-
-    stage('Cleanup') {
-      steps {
-        echo 'Cleaning up...'
-        bat 'docker-compose -f docker-compose.prod.yml down'
-      }
-    }
   }
 
   post {
     always {
       echo 'Pipeline completed'
-      bat 'docker-compose -f docker-compose.prod.yml down'
+      bat 'docker-compose -f docker-compose.prod.yml down' // Garante que o container será derrubado ao final
     }
   }
 }
