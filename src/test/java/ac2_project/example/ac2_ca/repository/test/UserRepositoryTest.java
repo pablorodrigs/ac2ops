@@ -8,6 +8,7 @@ import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
@@ -16,8 +17,8 @@ import ac2_project.example.ac2_ca.entity.User_Email;
 import ac2_project.example.ac2_ca.repository.User_Repository;
 
 
-
-@SpringBootTest
+@ActiveProfiles("test")
+@DataJpaTest
 public class UserRepositoryTest {
 	@Autowired
     private User_Repository userRepository;
