@@ -11,6 +11,7 @@ services:
 
   api:
     image: andprof/ac2_ca:latest
+    network_mode: "host"  # Usando a rede do host
     environment:
       DB_HOST: database
     ports:
