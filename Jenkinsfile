@@ -29,7 +29,7 @@ pipeline {
   post {
     always {
       echo 'Pipeline completed'
-      bat 'docker-compose -f docker-compose.prod.yml down' // Garante que o container será derrubado ao final
+      // Não derruba mais o container aqui
     }
   }
 }
