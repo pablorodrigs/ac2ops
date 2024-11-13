@@ -2,6 +2,15 @@ pipeline {
   agent any
 
   stages {
+    stage('Git Fetch') {
+      steps {
+        script {
+          // Executa o git fetch para garantir que as referências remotas estão atualizadas
+          bat 'git fetch --tags --force --progress --prune -- origin'
+        }
+      }
+    }
+
     stage('Checkout') {
       steps {
         checkout scm
